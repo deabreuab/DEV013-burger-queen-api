@@ -53,7 +53,9 @@ const fetchWithAuth = (token) => (url, opts = {}) => fetch(url, {
   },
 });
 
-const fetchAsAdmin = (url, opts) => fetchWithAuth(__e2e.adminToken)(url, opts);
+const fetchAsAdmin = (url, opts) => {
+  return fetchWithAuth(__e2e.adminToken)(url, opts)
+};
 const fetchAsTestUser = (url, opts) => fetchWithAuth(__e2e.testUserToken)(url, opts);
 
 const createTestUser = () => fetchAsAdmin('/users', {
@@ -72,7 +74,7 @@ const createTestUser = () => fetchAsAdmin('/users', {
     }
     return resp.json();
   })
-  .then(({ token }) => Object.assign(__e2e, { testUserToken: token }));
+  .then(({ accessToken }) => Object.assign(__e2e, { testUserToken: accessToken }));
 
 const checkAdminCredentials = () => fetch('/login', {
   method: 'POST',
@@ -85,7 +87,7 @@ const checkAdminCredentials = () => fetch('/login', {
 
     return resp.json();
   })
-  .then(({ token }) => Object.assign(__e2e, { adminToken: token }));
+  .then(({ accessToken }) => Object.assign(__e2e, { adminToken: accessToken }));
 
 const waitForServerToBeReady = (retries = 10) => new Promise((resolve, reject) => {
   if (!retries) {

@@ -9,6 +9,7 @@
   "scripts": {
     "pretest": "eslint .",
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "test:e2e": "jest --verbose --testPathPattern e2e --globalSetup ./e2e/globalSetup --globalTeardown ./e2e/globalTeardown --runInBand",
     "test:unit": "jest --verbose --testPathIgnorePatterns e2e",
     "test": "npm run test:e2e && npm run test:unit",
@@ -20,8 +21,9 @@
     "@shelf/jest-mongodb": "^4.1.7",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "express": "4.18.3",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "6.5",
     "mongodb-memory-server": "^8.12.2"
   },
   "devDependencies": {
@@ -34,6 +36,7 @@
     "jsdoc": "^3.6.6",
     "jsdoc-http-plugin": "^0.3.2",
     "node-fetch": "^3.1.0",
+    "nodemon": "^3.1.0",
     "tree-kill": "^1.2.2"
   },
   "bootcamp": {

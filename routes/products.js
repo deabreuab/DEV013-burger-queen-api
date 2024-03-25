@@ -1,24 +1,20 @@
+const { connect, getDataBase } = require('.././connect')
+const { createProduct, getProducts, getProductById, updateProduct, deleteProduct } = require('../controller/products')
 const {
   requireAuth,
   requireAdmin,
 } = require('../middleware/auth');
 
 module.exports = (app, nextMain) => {
+  app.get('/products', requireAuth, getProducts);
 
-  app.get('/products', requireAuth, (req, resp, next) => {
-  });
+  app.get('/products/:productId', requireAuth, getProductById);
 
-  app.get('/products/:productId', requireAuth, (req, resp, next) => {
-  });
+  app.post('/products', requireAdmin, createProduct);
 
-  app.post('/products', requireAdmin, (req, resp, next) => {
-  });
+  app.put('/products/:productId', requireAdmin, updateProduct);
 
-  app.put('/products/:productId', requireAdmin, (req, resp, next) => {
-  });
-
-  app.delete('/products/:productId', requireAdmin, (req, resp, next) => {
-  });
+  app.delete('/products/:productId', requireAdmin, deleteProduct);
 
   nextMain();
 };

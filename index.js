@@ -4,6 +4,7 @@ const authMiddleware = require('./middleware/auth');
 const errorHandler = require('./middleware/error');
 const routes = require('./routes');
 const pkg = require('./package.json');
+const dbConnect = require('./connect');
 
 const { port, secret } = config;
 const app = express();
@@ -23,6 +24,8 @@ routes(app, (err) => {
   }
 
   app.use(errorHandler);
+
+  dbConnect.connect().then(() => {});
 
   app.listen(port, () => {
     console.info(`App listening on port ${port}`);

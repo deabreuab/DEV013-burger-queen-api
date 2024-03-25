@@ -38,7 +38,8 @@ describe('GET /users', () => {
         expect(resp.status).toBe(200);
         return resp.json();
       })
-      .then(({ json }) => {
+      .then(( json ) => {
+        //Aquí se estaba desestructurando el JSON ({ json })
         expect(Array.isArray(json)).toBe(true);
         expect(json.length).toBe(1);
         expect(json[0]).toHaveProperty('_id');
@@ -113,7 +114,7 @@ describe('POST /users', () => {
       body: {
         email: 'test1@test.test',
         password: '12345',
-        role: "waiter",
+        role: 'waiter',
       },
     })
       .then((resp) => {
@@ -125,7 +126,7 @@ describe('POST /users', () => {
         expect(typeof json.email).toBe('string');
         expect(typeof json.password).toBe('undefined');
         expect(typeof json.role).toBe('string');
-        expect(json.role).toBe("waiter");
+        expect(json.role).toBe('waiter');
       })
   ));
 
@@ -135,7 +136,7 @@ describe('POST /users', () => {
       body: {
         email: 'admin1@test.test',
         password: '12345',
-        role: "admin",
+        role: 'admin',
       },
     })
       .then((resp) => {
@@ -147,7 +148,7 @@ describe('POST /users', () => {
         expect(typeof json.email).toBe('string');
         expect(typeof json.password).toBe('undefined');
         expect(typeof json.role).toBe('string');
-        expect(json.role).toBe("admin");
+        expect(json.role).toBe('admin');
       })
   ));
 
@@ -184,7 +185,7 @@ describe('PUT /users/:uid', () => {
   it('should fail with 403 when not admin tries to change own role', () => (
     fetchAsTestUser('/users/test@test.test', {
       method: 'PUT',
-      body: { role: "admin" },
+      body: { role: 'admin' },
     })
       .then((resp) => expect(resp.status).toBe(403))
   ));
@@ -203,7 +204,7 @@ describe('PUT /users/:uid', () => {
         expect(resp.status).toBe(200);
         return resp.json();
       })
-      .then((json) => expect(json).toHaveProperty('token'))
+      .then((json) => expect(json).toHaveProperty('accessToken'))
   ));
 
   it('should update user when admin', () => (
@@ -220,7 +221,7 @@ describe('PUT /users/:uid', () => {
         expect(resp.status).toBe(200);
         return resp.json();
       })
-      .then((json) => expect(json).toHaveProperty('token'))
+      .then((json) => expect(json).toHaveProperty('accessToken'))
   ));
 });
 
@@ -249,7 +250,7 @@ describe('DELETE /users/:uid', () => {
         expect(resp.status).toBe(200);
         return resp.json();
       })
-      .then(({ token }) => fetchWithAuth(token)(`/users/${credentials.email}`, {
+      .then(({ accessToken }) => fetchWithAuth(accessToken)(`/users/${credentials.email}`, {
         method: 'DELETE',
       }))
       .then((resp) => expect(resp.status).toBe(200))
