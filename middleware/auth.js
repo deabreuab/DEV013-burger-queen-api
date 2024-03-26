@@ -20,7 +20,7 @@ module.exports = (secret) => (req, res, next) => {
   }
 
   jwt.verify(token, secret, async (err, decodedToken) => {
-    console.log("ESTE ES EL DECODEDTOKEN", decodedToken)
+    // console.log("ESTE ES EL DECODEDTOKEN", decodedToken)
     if (err) {
       return next(403);
     }
@@ -50,7 +50,7 @@ module.exports.isAuthenticated = (req) => {
 };
 
 module.exports.isAdmin = (req) => {
-  console.log("MIDDLEWARE REQ.USER", req.user.role)
+  // console.log("MIDDLEWARE REQ.USER", req.user.role)
   if(req.user.role === "admin"){
     return true
   }else{

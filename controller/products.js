@@ -32,7 +32,6 @@ const createProduct = async (req, res) => {
 
 const getProducts = async (req, res) => {
     try {
-        
         const collection = getDataBase().collection('products')
         const products = await collection.find({}).toArray();
         console.log('Found documents =>', products);
@@ -81,7 +80,7 @@ const updateProduct = async (req, res) => {
         const filter = { _id: new ObjectId(productId)}
         const { price } = req.body
         if(!parseFloat(price)){
-            return res.status(400).send()
+            return res.status(400).json({ error: "Precio indicado no válido"})
         }
         const updatingProduct = {
             $set: req.body
