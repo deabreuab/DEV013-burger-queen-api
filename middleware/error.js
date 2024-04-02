@@ -20,7 +20,6 @@ module.exports = (err, req, resp, next) => {
   if (statusCode === 500) {
     console.error(statusCode, message);
   }
-  console.log('???????????????')
   resp.status(statusCode).json({ statusCode, message });
   next();
 };

@@ -1,5 +1,6 @@
-const { connect, getDataBase } = require('.././connect')
-const { createProduct, getProducts, getProductById, updateProduct, deleteProduct } = require('../controller/products')
+const {
+  createProduct, getProducts, getProductById, updateProduct, deleteProduct,
+} = require('../controller/products');
 const {
   requireAuth,
   requireAdmin,
