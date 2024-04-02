@@ -30,3 +30,5 @@ routes(app, (err) => {
     console.info(`App listening on port ${port}`);
   });
 });
+
+export default app;

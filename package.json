@@ -15,7 +15,8 @@
     "test": "npm run test:e2e && npm run test:unit",
     "lint": "eslint .",
     "docs:generate": "jsdoc -c jsdoc.conf --readme README-docs.md",
-    "docs:deploy": "rm -rf docs && npm run docs:generate && gh-pages -d docs"
+    "docs:deploy": "rm -rf docs && npm run docs:generate && gh-pages -d docs",
+    "vercel-build": "echo hello"
   },
   "dependencies": {
     "@shelf/jest-mongodb": "^4.1.7",
